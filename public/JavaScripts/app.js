@@ -77,7 +77,7 @@ Vue.component('cell', {
     }
 });
 
-new Vue({
+var vm = new Vue({
     el: '#mapper',
     data: {
         rows: [],
@@ -111,14 +111,28 @@ new Vue({
             console.log(event);
         },
 
-        setType: function (type) {
-
-        },
         setWall: function (wall) {
-
+            Vue.set(vm.currentCell, wall, !vm.currentCell[wall]);
+        },
+        setType: function (type) {
+            if (type === '') {
+                Vue.set(vm.currentCell, 'top', false);
+                Vue.set(vm.currentCell, 'right', false);
+                Vue.set(vm.currentCell, 'bottom', false);
+                Vue.set(vm.currentCell, 'left', false);
+                Vue.set(vm.currentCell, 'type', '');
+                Vue.set(vm.currentCell, 'color', '');
+            } else {
+                Vue.set(vm.currentCell, 'type', type);
+            }
         },
         setColor: function (color) {
-
+            if (color === '') {
+                Vue.set(vm.currentCell, 'type', 'room');
+                Vue.set(vm.currentCell, 'color', '');
+            } else {
+                Vue.set(vm.currentCell, 'color', color);
+            }
         }
     }
 });
