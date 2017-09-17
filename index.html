@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Mapper</title>
+
+    <script src="node_modules/vue/dist/vue.js"></script>
+
+    <link href="public/Stylesheets/Styles.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
-<div id="map"></div>
+<div id="mapper">
 
-<div id="control"></div>
+    <table>
+        <row
+            v-for="row in map.rows"
+            v-bind:row="row"
+            v-bind:key="row.id">
+        </row>
+    </table>
+
+    <div id="control"></div>
+
+</div>
+
+<script src="public/JavaScripts/app.js"></script>
 
 </body>
 </html>
