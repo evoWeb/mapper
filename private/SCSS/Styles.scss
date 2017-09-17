@@ -2,7 +2,14 @@ body {
   font-size: 16px;
 }
 
-#mapper table {
-  background-color: #ccc;
-  height: 80%;
+#mapper {
+  table {
+    background-color: #ccc;
+    height: 80%;
+  }
+
+  td {
+    height: 2em;
+    width: 2em;
+  }
 }

@@ -7,6 +7,13 @@
     <script src="node_modules/vue/dist/vue.js"></script>
 
     <link href="public/Stylesheets/Styles.css" rel="stylesheet" type="text/css"/>
+
+    <script type="text/x-template" id="map-row">
+        <tr :id="row.id"><cell v-for="cell in row.cells" v-bind:cell="cell" v-bind:key="cell.id"></cell></tr>
+    </script>
+    <script type="text/x-template" id="map-cell">
+        <td :id="cell.id" :class="classObject">&nbsp;</td>
+    </script>
 </head>
 <body>
 

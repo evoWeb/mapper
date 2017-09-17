@@ -1,19 +1,24 @@
 // Define row
 Vue.component('row', {
+    template: '#map-row',
+
     props: [
         /**
         {
+            // string
             'id',
+            // array
             'cells'
         }
          */
         'row'
-    ],
-    template: '<tr :id="row.id"><cell v-for="cell in row.cells" v-bind:cell="cell" v-bind:key="cell.id"></cell></tr>'
+    ]
 });
 
 // Define cell
 Vue.component('cell', {
+    template: '#map-cell',
+
     props: [
         /**
         {
@@ -27,7 +32,7 @@ Vue.component('cell', {
             'bottom',
             // int 0, 1
             'left',
-            // string empty, room, torch, focus
+            // string '', room, torch, focus
             'type',
             // string cRed cBlue cGreen cYellow cPurple
             'color'
@@ -35,15 +40,28 @@ Vue.component('cell', {
          */
         'cell'
     ],
-    template: '<td :id="cell.id" class="">&nbsp;</td>'
+
+    computed: {
+        classObject: function () {
+            return {
+                wt: this.cell.top > 0,
+                wr: this.cell.right > 0,
+                wb: this.cell.bottom > 0,
+                wl: this.cell.left > 0,
+                room: this.cell.type === 'room',
+                torch: this.cell.type === 'torch',
+                focus: this.cell.type === 'focus'
+            };
+        }
+    }
 });
 
 var rows = [
     {id: 1, cells: [
-        {id: '1_1', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '1_2', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '1_3', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '1_4', top: 0, right: 0, bottom: 0, left: 0 }
+        {id: '1_1', top: 1, right: 0, bottom: 0, left: 0, type: '' },
+        {id: '1_2', top: 0, right: 1, bottom: 0, left: 0, type: 'room' },
+        {id: '1_3', top: 0, right: 0, bottom: 1, left: 0, type: 'torch' },
+        {id: '1_4', top: 0, right: 0, bottom: 0, left: 1, type: 'focus' }
     ]},
     {id: 2, cells: [
         {id: '2_1', top: 0, right: 0, bottom: 0, left: 0 },
@@ -68,11 +86,12 @@ var rows = [
 new Vue({
     el: '#mapper',
     data: {
-        map: {rows: rows}
+        map: { rows: rows }
     },
     mounted: function () {
         this.prepareRows();
     },
+
     methods: {
         prepareRows: function () {
             var rows = [];
