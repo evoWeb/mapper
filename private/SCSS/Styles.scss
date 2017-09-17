@@ -4,18 +4,16 @@ body {
 
 #mapper {
   table {
-    background-color: #ccc;
     height: 80%;
   }
 
   .cell {
+    background-color: #ddd;
+    border: 2px solid white;
     height: 2em;
-    width: 2em;
     margin: 0.1em;
+    width: 2em;
 
-    &.wt, &.wr, &.wb, &.wl {
-      border: 2px solid white;
-    }
     &.wt {
       border-top-color: black;
     }

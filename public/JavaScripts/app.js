@@ -67,43 +67,13 @@ Vue.component('cell', {
     }
 });
 
-var rows = [
-    {id: 1, cells: [
-        {id: '1_1', top: 1, right: 0, bottom: 0, left: 0, type: '' },
-        {id: '1_2', top: 0, right: 1, bottom: 0, left: 0, type: 'room' },
-        {id: '1_3', top: 0, right: 0, bottom: 1, left: 0, type: 'torch', color: 'red' },
-        {id: '1_4', top: 0, right: 0, bottom: 0, left: 1, type: 'focus', color: 'blue' }
-    ]},
-    {id: 2, cells: [
-        {id: '2_1', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '2_2', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '2_3', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '2_4', top: 0, right: 0, bottom: 0, left: 0 }
-    ]},
-    {id: 3, cells: [
-        {id: '3_1', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '3_2', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '3_3', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '3_4', top: 0, right: 0, bottom: 0, left: 0 }
-    ]},
-    {id: 4, cells: [
-        {id: '4_1', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '4_2', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '4_3', top: 0, right: 0, bottom: 0, left: 0 },
-        {id: '4_4', top: 0, right: 0, bottom: 0, left: 0 }
-    ]}
-];
-
 new Vue({
     el: '#mapper',
     data: {
-        map: { rows: rows }
-    },
-    mounted: function () {
-        this.prepareRows();
+        rows: []
     },
 
-    methods: {
+    computed: {
         prepareRows: function () {
             var rows = [];
             for (var i = 0; i < 5; i++) {
@@ -115,7 +85,15 @@ new Vue({
                 }
                 rows.push(row);
             }
-            //this.rows.push(rows);
+
+            rows[2]['cells'][2]['type'] = 'room';
+
+            return rows;
+        }
+    },
+    methods: {
+        cellClick: function (event) {
+            console.log(this);
         }
     }
 });

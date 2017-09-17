@@ -3,18 +3,15 @@ body {
 }
 
 #mapper table {
-  background-color: #ccc;
   height: 80%;
 }
 
 #mapper .cell {
-  height: 2em;
-  width: 2em;
-  margin: 0.1em;
-}
-
-#mapper .cell.wt, #mapper .cell.wr, #mapper .cell.wb, #mapper .cell.wl {
+  background-color: #ddd;
   border: 2px solid white;
+  height: 2em;
+  margin: 0.1em;
+  width: 2em;
 }
 
 #mapper .cell.wt {
