@@ -26,20 +26,23 @@ Vue.component('cell', {
             // string
             'id',
 
-            // int 0, 1
+            // bool
             'top',
-            // int 0, 1
+            // bool
             'right',
-            // int 0, 1
+            // bool
             'bottom',
-            // int 0, 1
+            // bool
             'left',
 
             // string '', room, torch, focus
             'type',
 
-            // string '', red, blue, green, yellow, purple
+            // string '', red, green, blue, yellow, purple
             'color'
+
+            // bool
+            'current'
         }
          */
         'cell'
@@ -48,21 +51,28 @@ Vue.component('cell', {
     computed: {
         classObject: function () {
             return {
-                wt: this.cell.top > 0,
-                wr: this.cell.right > 0,
-                wb: this.cell.bottom > 0,
-                wl: this.cell.left > 0,
+                wt: this.cell.top,
+                wr: this.cell.right,
+                wb: this.cell.bottom,
+                wl: this.cell.left,
 
                 room: this.cell.type === 'room',
                 torch: this.cell.type === 'torch',
                 focus: this.cell.type === 'focus',
 
                 red: this.cell.color === 'red',
-                blue: this.cell.color === 'blue',
                 green: this.cell.color === 'green',
+                blue: this.cell.color === 'blue',
                 yellow: this.cell.color === 'yellow',
-                purple: this.cell.color === 'purple'
+                purple: this.cell.color === 'purple',
+
+                current: this.cell.current
             };
+        }
+    },
+    methods: {
+        click: function (event) {
+            this.$root.cellClicked(this, event);
         }
     }
 });
@@ -70,16 +80,19 @@ Vue.component('cell', {
 new Vue({
     el: '#mapper',
     data: {
-        rows: []
+        rows: [],
+        currentCell: {}
     },
-
-    computed: {
+    mounted: function () {
+        this.prepareRows();
+    },
+    methods: {
         prepareRows: function () {
             var rows = [];
             for (var i = 0; i < 5; i++) {
                 var row = { id: i, cells: [] };
                 for (var j = 0; j < 5; j++) {
-                    var cell = {id: i + '_' + j, top: 0, right: 0, bottom: 0, left: 0 };
+                    var cell = {id: i + '_' + j, top: false, right: false, bottom: false, left: false, current: false };
 
                     row.cells.push(cell);
                 }
@@ -87,13 +100,25 @@ new Vue({
             }
 
             rows[2]['cells'][2]['type'] = 'room';
+            rows[2]['cells'][2]['current'] = true;
 
-            return rows;
-        }
-    },
-    methods: {
-        cellClick: function (event) {
-            console.log(this);
+            this.currentCell = rows[2]['cells'][2];
+            this.rows = rows;
+        },
+
+        cellClicked: function (cell, event) {
+            console.log(cell);
+            console.log(event);
+        },
+
+        setType: function (type) {
+
+        },
+        setWall: function (wall) {
+
+        },
+        setColor: function (color) {
+
         }
     }
 });

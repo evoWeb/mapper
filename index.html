@@ -19,7 +19,11 @@
         </tr>
     </script>
     <script type="text/x-template" id="map-cell">
-        <td :id="cell.id" class="cell" :class="classObject">&nbsp;</td>
+        <td
+            :id="cell.id"
+            class="cell"
+            :class="classObject"
+            v-on:click="click">&nbsp;</td>
     </script>
 </head>
 <body>
@@ -29,13 +33,29 @@
     <table>
         <tr
             is="row"
-            v-for="row in prepareRows"
+            v-for="row in rows"
             v-bind:row="row"
             v-bind:key="row.id">
         </tr>
     </table>
 
-    <div id="control"></div>
+    <div id="control">
+        <a href="#" v-on:click="setWall('top')">top</a>
+        <a href="#" v-on:click="setWall('right')">right</a>
+        <a href="#" v-on:click="setWall('bottom')">bottom</a>
+        <a href="#" v-on:click="setWall('left')">left</a>
+        <br/>
+        <a href="#" v-on:click="setType('')">empty</a>
+        <a href="#" v-on:click="setType('room')">room</a>
+        <a href="#" v-on:click="setType('torch')">torch</a>
+        <a href="#" v-on:click="setType('focus')">focus</a>
+        <br/>
+        <a href="#" v-on:click="setColor('red')">red</a>
+        <a href="#" v-on:click="setColor('green')">green</a>
+        <a href="#" v-on:click="setColor('blue')">blue</a>
+        <a href="#" v-on:click="setColor('yellow')">yellow</a>
+        <a href="#" v-on:click="setColor('purple')">purple</a>
+    </div>
 
 </div>
 

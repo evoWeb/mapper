@@ -4,13 +4,15 @@ body {
 
 #mapper table {
   height: 80%;
+  margin: 2em auto;
 }
 
 #mapper .cell {
-  background-color: #ddd;
+  background-color: #eee;
   border: 2px solid white;
   height: 2em;
   margin: 0.1em;
+  opacity: 0.7;
   width: 2em;
 }
 
@@ -63,4 +65,13 @@ body {
 
 #mapper .cell.focus {
   background-image: url(../../Public/Images/ming-circular-dots-lines-logo.svg);
+}
+
+#mapper .cell.current {
+  opacity: 1;
+}
+
+#mapper #control {
+  display: inline-block;
+  margin: 2em auto;
 }
