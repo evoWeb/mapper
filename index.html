@@ -40,22 +40,22 @@
     </table>
 
     <div id="control">
-        <a href="#" v-on:click="setWall('top')">top</a>
-        <a href="#" v-on:click="setWall('right')">right</a>
-        <a href="#" v-on:click="setWall('bottom')">bottom</a>
-        <a href="#" v-on:click="setWall('left')">left</a>
+        <a href="#" v-on:click="setType('')">empty (esc)</a>
+        <a href="#" v-on:click="setType('room')">room (h)</a>
+        <a href="#" v-on:click="setType('torch')">torch (j)</a>
+        <a href="#" v-on:click="setType('focus')">focus (k)</a>
         <br/>
-        <a href="#" v-on:click="setType('')">empty</a>
-        <a href="#" v-on:click="setType('room')">room</a>
-        <a href="#" v-on:click="setType('torch')">torch</a>
-        <a href="#" v-on:click="setType('focus')">focus</a>
+        <a href="#" v-on:click="setWall('top')">top (z)</a>
+        <a href="#" v-on:click="setWall('right')">right (u)</a>
+        <a href="#" v-on:click="setWall('bottom')">bottom (i)</a>
+        <a href="#" v-on:click="setWall('left')">left (o)</a>
         <br/>
-        <a href="#" v-on:click="setColor('')">clear</a>
-        <a href="#" v-on:click="setColor('red')">red</a>
-        <a href="#" v-on:click="setColor('green')">green</a>
-        <a href="#" v-on:click="setColor('blue')">blue</a>
-        <a href="#" v-on:click="setColor('yellow')">yellow</a>
-        <a href="#" v-on:click="setColor('purple')">purple</a>
+        <a href="#" v-on:click="setColor('')">clear (0)</a>
+        <a href="#" v-on:click="setColor('red')">red (1)</a>
+        <a href="#" v-on:click="setColor('green')">green (2)</a>
+        <a href="#" v-on:click="setColor('blue')">blue (3)</a>
+        <a href="#" v-on:click="setColor('yellow')">yellow (4)</a>
+        <a href="#" v-on:click="setColor('purple')">purple (5)</a>
     </div>
 
 </div>

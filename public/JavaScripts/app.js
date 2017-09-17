@@ -83,9 +83,14 @@ var vm = new Vue({
         rows: [],
         currentCell: {}
     },
+
+    created: function () {
+        document.addEventListener('keydown', this.keyDown)
+    },
     mounted: function () {
         this.prepareRows();
     },
+
     methods: {
         prepareRows: function () {
             var rows = [];
@@ -110,7 +115,67 @@ var vm = new Vue({
             console.log(cell);
             console.log(event);
         },
+        keyDown: function (event) {
+            console.log(event);
+            // z
+            if (event.key === 'z') {
+                this.setWall('top');
+            }
+            // u
+            else if (event.key === 'u') {
+                this.setWall('right');
+            }
+            // i
+            else if (event.key === 'i') {
+                this.setWall('bottom');
+            }
+            // o
+            else if (event.key === 'o') {
+                this.setWall('left');
+            }
 
+            // esc
+            else if (event.keyCode === 27) {
+                this.setType('');
+            }
+            // h
+            else if (event.key === 'h') {
+                this.setType('room');
+            }
+            // j
+            else if (event.key === 'j') {
+                this.setType('torch');
+            }
+            // k
+            else if (event.key === 'k') {
+                this.setType('focus');
+            }
+
+            // 0
+            else if (event.key === '0') {
+                this.setColor('');
+            }
+            // 1
+            else if (event.key === '1') {
+                this.setColor('red');
+            }
+            // 2
+            else if (event.key === '2') {
+                this.setColor('green');
+            }
+            // 3
+            else if (event.key === '3') {
+                this.setColor('blue');
+            }
+            // 4
+            else if (event.key === '4') {
+                this.setColor('yellow');
+            }
+            // 5
+            else if (event.key === '5') {
+                this.setColor('purple');
+            }
+        },
         setWall: function (wall) {
             Vue.set(vm.currentCell, wall, !vm.currentCell[wall]);
         },
