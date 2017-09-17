@@ -12,7 +12,7 @@
         <tr :id="row.id"><cell v-for="cell in row.cells" v-bind:cell="cell" v-bind:key="cell.id"></cell></tr>
     </script>
     <script type="text/x-template" id="map-cell">
-        <td :id="cell.id" :class="classObject">&nbsp;</td>
+        <td :id="cell.id" class="cell" :class="classObject">&nbsp;</td>
     </script>
 </head>
 <body>

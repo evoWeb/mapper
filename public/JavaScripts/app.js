@@ -7,6 +7,7 @@ Vue.component('row', {
         {
             // string
             'id',
+
             // array
             'cells'
         }
@@ -24,6 +25,7 @@ Vue.component('cell', {
         {
             // string
             'id',
+
             // int 0, 1
             'top',
             // int 0, 1
@@ -32,9 +34,11 @@ Vue.component('cell', {
             'bottom',
             // int 0, 1
             'left',
+
             // string '', room, torch, focus
             'type',
-            // string cRed cBlue cGreen cYellow cPurple
+
+            // string '', red, blue, green, yellow, purple
             'color'
         }
          */
@@ -48,9 +52,16 @@ Vue.component('cell', {
                 wr: this.cell.right > 0,
                 wb: this.cell.bottom > 0,
                 wl: this.cell.left > 0,
+
                 room: this.cell.type === 'room',
                 torch: this.cell.type === 'torch',
-                focus: this.cell.type === 'focus'
+                focus: this.cell.type === 'focus',
+
+                red: this.cell.color === 'red',
+                blue: this.cell.color === 'blue',
+                green: this.cell.color === 'green',
+                yellow: this.cell.color === 'yellow',
+                purple: this.cell.color === 'purple'
             };
         }
     }
@@ -60,8 +71,8 @@ var rows = [
     {id: 1, cells: [
         {id: '1_1', top: 1, right: 0, bottom: 0, left: 0, type: '' },
         {id: '1_2', top: 0, right: 1, bottom: 0, left: 0, type: 'room' },
-        {id: '1_3', top: 0, right: 0, bottom: 1, left: 0, type: 'torch' },
-        {id: '1_4', top: 0, right: 0, bottom: 0, left: 1, type: 'focus' }
+        {id: '1_3', top: 0, right: 0, bottom: 1, left: 0, type: 'torch', color: 'red' },
+        {id: '1_4', top: 0, right: 0, bottom: 0, left: 1, type: 'focus', color: 'blue' }
     ]},
     {id: 2, cells: [
         {id: '2_1', top: 0, right: 0, bottom: 0, left: 0 },

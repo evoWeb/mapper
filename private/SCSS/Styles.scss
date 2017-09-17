@@ -8,8 +8,57 @@ body {
     height: 80%;
   }
 
-  td {
+  .cell {
     height: 2em;
     width: 2em;
+    margin: 0.1em;
+
+    &.wt, &.wr, &.wb, &.wl {
+      border: 2px solid white;
+    }
+    &.wt {
+      border-top-color: black;
+    }
+    &.wr {
+      border-right-color: black;
+    }
+    &.wb {
+      border-bottom-color: black;
+    }
+    &.wl {
+      border-left-color: black;
+    }
+
+    &.room,
+    &.torch,
+    &.focus {
+      background-color: #aaa;
+      background-size: 1.2em;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    &.red {
+      background-color: red;
+    }
+    &.blue {
+      background-color: blue;
+    }
+    &.green {
+      background-color: green;
+    }
+    &.yellow {
+      background-color: yellow;
+    }
+    &.purple {
+      background-color: purple;
+    }
+
+    &.torch {
+      background-image: url(../../Public/Images/ember-logo.svg);
+    }
+    &.focus {
+      background-image: url(../../Public/Images/ming-circular-dots-lines-logo.svg);
+    }
   }
 }

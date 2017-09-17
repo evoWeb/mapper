@@ -7,7 +7,63 @@ body {
   height: 80%;
 }
 
-#mapper td {
+#mapper .cell {
   height: 2em;
   width: 2em;
+  margin: 0.1em;
+}
+
+#mapper .cell.wt, #mapper .cell.wr, #mapper .cell.wb, #mapper .cell.wl {
+  border: 2px solid white;
+}
+
+#mapper .cell.wt {
+  border-top-color: black;
+}
+
+#mapper .cell.wr {
+  border-right-color: black;
+}
+
+#mapper .cell.wb {
+  border-bottom-color: black;
+}
+
+#mapper .cell.wl {
+  border-left-color: black;
+}
+
+#mapper .cell.room, #mapper .cell.torch, #mapper .cell.focus {
+  background-color: #aaa;
+  background-size: 1.2em;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#mapper .cell.red {
+  background-color: red;
+}
+
+#mapper .cell.blue {
+  background-color: blue;
+}
+
+#mapper .cell.green {
+  background-color: green;
+}
+
+#mapper .cell.yellow {
+  background-color: yellow;
+}
+
+#mapper .cell.purple {
+  background-color: purple;
+}
+
+#mapper .cell.torch {
+  background-image: url(../../Public/Images/ember-logo.svg);
+}
+
+#mapper .cell.focus {
+  background-image: url(../../Public/Images/ming-circular-dots-lines-logo.svg);
 }
