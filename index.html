@@ -7,24 +7,6 @@
     <script src="node_modules/vue/dist/vue.js"></script>
 
     <link href="public/Stylesheets/Styles.css" rel="stylesheet" type="text/css"/>
-
-    <script type="text/x-template" id="map-row">
-        <tr :id="row.id">
-            <td
-                is="cell"
-                v-for="cell in row.cells"
-                v-bind:cell="cell"
-                v-bind:key="cell.id">
-            </td>
-        </tr>
-    </script>
-    <script type="text/x-template" id="map-cell">
-        <td
-            :id="cell.id"
-            class="cell"
-            :class="classObject"
-            v-on:click="click">&nbsp;</td>
-    </script>
 </head>
 <body>
 
@@ -39,24 +21,7 @@
         </tr>
     </table>
 
-    <div id="control">
-        <a href="#" v-on:click="setType('')">empty (esc)</a>
-        <a href="#" v-on:click="setType('room')">room (h)</a>
-        <a href="#" v-on:click="setType('torch')">torch (j)</a>
-        <a href="#" v-on:click="setType('focus')">focus (k)</a>
-        <br/>
-        <a href="#" v-on:click="setWall('top')">top (z)</a>
-        <a href="#" v-on:click="setWall('right')">right (u)</a>
-        <a href="#" v-on:click="setWall('bottom')">bottom (i)</a>
-        <a href="#" v-on:click="setWall('left')">left (o)</a>
-        <br/>
-        <a href="#" v-on:click="setColor('')">clear (0)</a>
-        <a href="#" v-on:click="setColor('red')">red (1)</a>
-        <a href="#" v-on:click="setColor('green')">green (2)</a>
-        <a href="#" v-on:click="setColor('blue')">blue (3)</a>
-        <a href="#" v-on:click="setColor('yellow')">yellow (4)</a>
-        <a href="#" v-on:click="setColor('purple')">purple (5)</a>
-    </div>
+    <div is="control"></div>
 
 </div>
 

@@ -17,10 +17,10 @@
   "scripts": {
     "start": "node app.js",
 
-    "node-sass": "node-sass --output-style compressed private/SCSS/Styles.scss public/Stylesheets/Styles.min.css",
+    "node-sass": "node-sass --output-style compressed src/scss/Styles.scss public/Stylesheets/Styles.min.css",
     "build:css": "npm run node-sass",
 
-    "node-sass:dev": "node-sass --output-style expanded private/SCSS/Styles.scss public/Stylesheets/Styles.css",
+    "node-sass:dev": "node-sass --output-style expanded src/scss/Styles.scss public/Stylesheets/Styles.css",
     "csslint": "csslint --quiet public/Stylesheets/Styles.css",
     "build:dev:css": "npm run node-sass:dev",
 

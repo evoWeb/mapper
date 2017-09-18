@@ -75,3 +75,13 @@ body {
   display: inline-block;
   margin: 2em auto;
 }
+
+#mapper #control a,
+#mapper #control br {
+  display: none;
+}
+
+#mapper #control.showControls a,
+#mapper #control.showControls br {
+  display: inherit;
+}
