@@ -3,29 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Mapper</title>
-
-    <script src="node_modules/vue/dist/vue.js"></script>
-
-    <link href="dist/Stylesheets/Styles.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
-<div id="mapper">
-
-    <table>
-        <tr
-            is="row"
-            v-for="row in rows"
-            v-bind:row="row"
-            v-bind:key="row.id">
-        </tr>
-    </table>
-
-    <div is="control"></div>
-
-</div>
-
-<script src="src/main.js"></script>
+<div id="app"></div>
+<script src="/dist/build.js"></script>
 
 </body>
 </html>

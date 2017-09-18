@@ -4,13 +4,13 @@
   "private": true,
 
   "dependencies": {
-    "js-beautify": "1.6.14",
-    "vue-cli": "^2.8.0",
-
     "vue": "^2.3.3"
   },
 
   "devDependencies": {
+    "js-beautify": "1.6.14",
+    "vue-cli": "^2.8.0",
+
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",
     "babel-preset-env": "^1.5.1",
@@ -26,16 +26,7 @@
   },
 
   "scripts": {
-    "start": "node app.js",
-
-    "node-sass": "node-sass --output-style compressed src/scss/Styles.scss public/Stylesheets/Styles.min.css",
-    "build:css": "npm run node-sass",
-
-    "node-sass:dev": "node-sass --output-style expanded src/scss/Styles.scss public/Stylesheets/Styles.css",
-    "csslint": "csslint --quiet public/Stylesheets/Styles.css",
-    "build:dev:css": "npm run node-sass:dev",
-
-    "build:dev": "npm run build:dev:css",
-    "build": "npm run build:dev:css && npm run build:css"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   }
 }

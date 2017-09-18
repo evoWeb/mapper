@@ -26,9 +26,14 @@
 </template>
 
 <script>
-    module.exports = {
-        data: {
-            show: true
+    import Vue from 'vue';
+
+    export default {
+        data () {
+            return {
+                currentCell: {},
+                show: true
+            }
         },
 
         created: function () {
@@ -130,6 +135,7 @@
 
             setWall: function (wall) {
                 let currentCell = this.$root.currentCell;
+                console.log(this.$root);
 
                 Vue.set(currentCell, wall, !currentCell[wall]);
             },
