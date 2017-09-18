@@ -10,7 +10,7 @@
             </tr>
         </table>
 
-        <div is="control"></div>
+        <div is="control" @invertCellValue="invertCellValue" @setCellValue="setCellValue"></div>
 
     </div>
 </template>
@@ -46,6 +46,13 @@
 
                 this.currentCell = rows[2]['cells'][2];
                 this.rows = rows;
+            },
+
+            invertCellValue(key) {
+                this.currentCell[key] = !this.currentCell[key];
+            },
+            setCellValue(key, value) {
+                this.currentCell[key] = value;
             },
 
             cellClicked: function (cell, event) {

@@ -134,36 +134,28 @@
             },
 
             setWall: function (wall) {
-                let currentCell = this.$root.currentCell;
-                console.log(this.$root);
-
-                Vue.set(currentCell, wall, !currentCell[wall]);
+                this.$emit('invertCellValue', wall);
             },
 
             setType: function (type) {
-                let currentCell = this.$root.currentCell;
-
                 if (type === '') {
-                    Vue.set(currentCell, 'top', false);
-                    Vue.set(currentCell, 'right', false);
-                    Vue.set(currentCell, 'bottom', false);
-                    Vue.set(currentCell, 'left', false);
-                    Vue.set(currentCell, 'type', '');
-                    Vue.set(currentCell, 'color', '');
-                } else {
-                    Vue.set(currentCell, 'type', type);
+                    this.$emit('setCellValue', 'top', false);
+                    this.$emit('setCellValue', 'right', false);
+                    this.$emit('setCellValue', 'bottom', false);
+                    this.$emit('setCellValue', 'left', false);
+                    this.$emit('setCellValue', 'color', '');
                 }
+
+                this.$emit('setCellValue', 'type', type);
             },
 
             setColor: function (color) {
-                let currentCell = this.$root.currentCell;
-
+                console.log(color);
                 if (color === '') {
-                    Vue.set(currentCell, 'type', 'room');
-                    Vue.set(currentCell, 'color', '');
-                } else {
-                    Vue.set(currentCell, 'color', color);
+                    this.$emit('setCellValue', 'type', 'room');
                 }
+
+                this.$emit('setCellValue', 'color', color);
             }
         }
     };
