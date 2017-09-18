@@ -55,10 +55,10 @@ body {
     }
 
     &.torch {
-      background-image: url(../../public/Images/ember-logo.svg);
+      background-image: url(../../dist/Images/ember-logo.svg);
     }
     &.focus {
-      background-image: url(../../public/Images/ming-circular-dots-lines-logo.svg);
+      background-image: url(../../dist/Images/ming-circular-dots-lines-logo.svg);
     }
 
     &.current {

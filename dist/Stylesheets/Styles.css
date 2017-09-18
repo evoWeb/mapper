@@ -60,11 +60,11 @@ body {
 }
 
 #mapper .cell.torch {
-  background-image: url(../../Public/Images/ember-logo.svg);
+  background-image: url(..//Images/ember-logo.svg);
 }
 
 #mapper .cell.focus {
-  background-image: url(../../Public/Images/ming-circular-dots-lines-logo.svg);
+  background-image: url(..//Images/ming-circular-dots-lines-logo.svg);
 }
 
 #mapper .cell.current {
