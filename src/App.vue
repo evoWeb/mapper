@@ -5,23 +5,25 @@
             <tr
                 is="row"
                 v-for="row in rows"
-                v-bind:row="row"
-                v-bind:key="row.id">
+                :row="row"
+                :key="row.id"
+                @cellClicked="cellClicked">
             </tr>
         </table>
 
-        <div is="control" @invertCellValue="invertCellValue" @setCellValue="setCellValue" @cellClicked="cellClicked"></div>
+        <div is="control" @invertCellValue="invertCellValue" @setCellValue="setCellValue"></div>
 
     </div>
 </template>
 
 <script>
+    import Vue from 'vue';
+
     export default {
         data () {
             return {
                 rows: [],
-                currentRow: 0,
-                currentCell: 0
+                currentCell: {}
             }
         },
 
@@ -42,36 +44,25 @@
                     rows.push(row);
                 }
 
-                this.currentRow = 2;
-                this.currentCell = 2;
-
-                rows[this.currentRow]['cells'][this.currentCell]['type'] = 'room';
-                rows[this.currentRow]['cells'][this.currentCell]['current'] = true;
+                rows[2]['cells'][2]['type'] = 'room';
+                rows[2]['cells'][2]['current'] = true;
 
                 this.rows = rows;
+                this.currentCell = this.rows[2]['cells'][2];
             },
 
             invertCellValue(key) {
-                let currentCell = this.rows[this.currentRow]['cells'][this.currentCell];
-                currentCell[key] = !currentCell[key];
+                Vue.set(this.currentCell, key, !this.currentCell[key]);
             },
 
             setCellValue(key, value) {
-                console.log(key, value);
-                let currentCell = this.rows[this.currentRow]['cells'][this.currentCell];
-                currentCell[key] = value;
-                //this.$forceUpdate();
+                Vue.set(this.currentCell, key, value);
             },
 
-            cellClicked: function (cell, event) {
-                let currentCell = this.rows[this.currentRow]['cells'][this.currentCell];
-                if (cell.id !== currentCell.id) {
-                    let idValues = cell.id.split('_');
-                    this.currentRow = idValues[0];
-                    this.currentCell = idValues[1];
+            cellClicked: function (cell) {
+                if (cell.id !== this.currentCell.id) {
+                    this.currentCell = cell;
                 }
-                console.log(cell);
-                console.log(event);
             }
         }
     }
