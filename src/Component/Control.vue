@@ -42,80 +42,48 @@
 
         methods: {
             keyDown: function (event) {
-                console.log(event);
-                // w
                 if (event.key === 'w') {
                     this.moveUp();
-                }
-                // a
-                else if (event.key === 'a') {
+                } else if (event.key === 'a') {
                     this.moveLeft();
-                }
-                // s
-                else if (event.key === 's') {
+                } else if (event.key === 's') {
                     this.moveDown();
-                }
-                // d
-                else if (event.key === 'd') {
+                } else if (event.key === 'd') {
                     this.moveRight();
                 }
 
-                // z
                 else if (event.key === 'z') {
                     this.setWall('top');
-                }
-                // u
-                else if (event.key === 'u') {
+                } else if (event.key === 'u') {
                     this.setWall('right');
-                }
-                // i
-                else if (event.key === 'i') {
+                } else if (event.key === 'i') {
                     this.setWall('bottom');
-                }
-                // o
-                else if (event.key === 'o') {
+                } else if (event.key === 'o') {
                     this.setWall('left');
                 }
 
                 // esc
                 else if (event.keyCode === 27) {
                     this.setType('');
-                }
-                // h
-                else if (event.key === 'h') {
+                } else if (event.key === 'h') {
                     this.setType('room');
-                }
-                // j
-                else if (event.key === 'j') {
+                } else if (event.key === 'j') {
                     this.setType('torch');
-                }
-                // k
-                else if (event.key === 'k') {
+                } else if (event.key === 'k') {
                     this.setType('focus');
                 }
 
-                // 0
                 else if (event.key === '0') {
                     this.setColor('');
-                }
-                // 1
-                else if (event.key === '1') {
+                } else if (event.key === '1') {
                     this.setColor('red');
-                }
-                // 2
-                else if (event.key === '2') {
+                } else if (event.key === '2') {
                     this.setColor('green');
-                }
-                // 3
-                else if (event.key === '3') {
+                } else if (event.key === '3') {
                     this.setColor('blue');
-                }
-                // 4
-                else if (event.key === '4') {
+                } else if (event.key === '4') {
                     this.setColor('yellow');
-                }
-                // 5
-                else if (event.key === '5') {
+                } else if (event.key === '5') {
                     this.setColor('purple');
                 }
             },
@@ -150,7 +118,6 @@
             },
 
             setColor: function (color) {
-                console.log(color);
                 if (color === '') {
                     this.$emit('setCellValue', 'type', 'room');
                 }

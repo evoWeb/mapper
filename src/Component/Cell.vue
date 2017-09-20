@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    module.exports = {
+    export default {
         props: [
             /**
              {
@@ -38,29 +38,30 @@
 
         computed: {
             classObject: function () {
-                return {
+                let classes = {
                     wt: this.cell.top,
                     wr: this.cell.right,
                     wb: this.cell.bottom,
                     wl: this.cell.left,
 
-                    room: this.cell.type === 'room',
-                    torch: this.cell.type === 'torch',
-                    focus: this.cell.type === 'focus',
-
-                    red: this.cell.color === 'red',
-                    green: this.cell.color === 'green',
-                    blue: this.cell.color === 'blue',
-                    yellow: this.cell.color === 'yellow',
-                    purple: this.cell.color === 'purple',
-
                     current: this.cell.current
                 };
+
+                if (this.cell.type !== '') {
+                    classes[this.cell.type] = true;
+                }
+
+                if (this.cell.color !== '') {
+                    classes[this.cell.color] = true;
+                }
+
+                return classes;
             }
         },
+
         methods: {
             click: function (event) {
-                this.$root.cellClicked(this, event);
+                this.$emit('cellClicked', this.cell, event);
             }
         }
     };

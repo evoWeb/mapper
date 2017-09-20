@@ -3,8 +3,9 @@
         <td
             is="cell"
             v-for="cell in row.cells"
-            v-bind:cell="cell"
-            v-bind:key="cell.id">
+            :cell="cell"
+            :key="cell.id"
+            @cellClicked="cellClicked">
         </td>
     </tr>
 </template>
@@ -22,6 +23,12 @@
              }
              */
             'row'
-        ]
+        ],
+
+        methods: {
+            cellClicked: function (cell, event) {
+                this.$emit('cellClicked', cell, event);
+            }
+        }
     };
 </script>

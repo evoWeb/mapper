@@ -10,7 +10,7 @@
             </tr>
         </table>
 
-        <div is="control" @invertCellValue="invertCellValue" @setCellValue="setCellValue"></div>
+        <div is="control" @invertCellValue="invertCellValue" @setCellValue="setCellValue" @cellClicked="cellClicked"></div>
 
     </div>
 </template>
@@ -20,7 +20,8 @@
         data () {
             return {
                 rows: [],
-                currentCell: {}
+                currentRow: 0,
+                currentCell: 0
             }
         },
 
@@ -41,23 +42,33 @@
                     rows.push(row);
                 }
 
-                rows[2]['cells'][2]['type'] = 'room';
-                rows[2]['cells'][2]['current'] = true;
+                this.currentRow = 2;
+                this.currentCell = 2;
 
-                this.currentCell = rows[2]['cells'][2];
+                rows[this.currentRow]['cells'][this.currentCell]['type'] = 'room';
+                rows[this.currentRow]['cells'][this.currentCell]['current'] = true;
+
                 this.rows = rows;
             },
 
             invertCellValue(key) {
-                this.currentCell[key] = !this.currentCell[key];
+                let currentCell = this.rows[this.currentRow]['cells'][this.currentCell];
+                currentCell[key] = !currentCell[key];
             },
+
             setCellValue(key, value) {
-                this.currentCell[key] = value;
+                console.log(key, value);
+                let currentCell = this.rows[this.currentRow]['cells'][this.currentCell];
+                currentCell[key] = value;
+                //this.$forceUpdate();
             },
 
             cellClicked: function (cell, event) {
-                if (cell.id !== this.currentCell.id) {
-                    this.currentCell = cell;
+                let currentCell = this.rows[this.currentRow]['cells'][this.currentCell];
+                if (cell.id !== currentCell.id) {
+                    let idValues = cell.id.split('_');
+                    this.currentRow = idValues[0];
+                    this.currentCell = idValues[1];
                 }
                 console.log(cell);
                 console.log(event);
