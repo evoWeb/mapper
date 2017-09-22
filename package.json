@@ -22,11 +22,24 @@
     "vue-loader": "^12.1.0",
     "vue-template-compiler": "^2.3.3",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+
+    "csslint": "latest"
   },
 
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules && npm run build:dev:css && npm run build:css",
+
+    "start": "node app.js",
+
+    "node-sass": "node-sass --output-style compressed src/scss/Styles.scss dist/Stylesheets/Styles.min.css",
+    "build:css": "npm run node-sass",
+
+    "node-sass:dev": "node-sass --output-style expanded src/scss/Styles.scss dist/Stylesheets/Styles.css",
+    "csslint": "csslint --quiet src/Stylesheets/Styles.css",
+    "build:dev:css": "npm run node-sass:dev",
+
+    "build:dev": "npm run build:dev:css"
   }
 }
