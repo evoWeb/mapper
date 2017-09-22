@@ -179,7 +179,7 @@
                     return;
                 }
 
-                this.rows.map(function (row, index) {
+                this.rows.map(function (row) {
                     let cell = new Cell(cellIndex, row.cells[0].y, row);
 
                     if (cellIndex > 0) {
