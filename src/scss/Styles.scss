@@ -1,83 +1,83 @@
 body {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 #mapper {
-  table {
-    height: 80%;
-    margin: 2em auto;
-  }
-
-  .cell {
-    background-color: #eee;
-    border: 2px solid white;
-    height: 2em;
-    margin: 0.1em;
-    opacity: 0.7;
-    width: 2em;
-
-    &.wt {
-      border-top-color: black;
-    }
-    &.wr {
-      border-right-color: black;
-    }
-    &.wb {
-      border-bottom-color: black;
-    }
-    &.wl {
-      border-left-color: black;
+    table {
+        height: 80%;
+        margin: 2em auto;
     }
 
-    &.room,
-    &.torch,
-    &.focus {
-      background-color: #aaa;
-      background-size: 1.2em;
-      background-position: center center;
-      background-repeat: no-repeat;
+    .cell {
+        background-color: #eee;
+        border: 2px solid white;
+        height: 2em;
+        margin: 0.1em;
+        opacity: 0.7;
+        width: 2em;
+
+        &.wt {
+            border-top-color: black;
+        }
+        &.wr {
+            border-right-color: black;
+        }
+        &.wb {
+            border-bottom-color: black;
+        }
+        &.wl {
+            border-left-color: black;
+        }
+
+        &.room,
+        &.torch,
+        &.focus {
+            background-color: #aaa;
+            background-size: 1.2em;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        &.red {
+            background-color: red;
+        }
+        &.blue {
+            background-color: blue;
+        }
+        &.green {
+            background-color: green;
+        }
+        &.yellow {
+            background-color: yellow;
+        }
+        &.purple {
+            background-color: purple;
+        }
+
+        &.torch {
+            background-image: url(../../dist/Images/ember-logo.svg);
+        }
+        &.focus {
+            background-image: url(../../dist/Images/ming-circular-dots-lines-logo.svg);
+        }
+
+        &.current {
+            opacity: 1;
+        }
     }
 
-    &.red {
-      background-color: red;
-    }
-    &.blue {
-      background-color: blue;
-    }
-    &.green {
-      background-color: green;
-    }
-    &.yellow {
-      background-color: yellow;
-    }
-    &.purple {
-      background-color: purple;
-    }
+    #control {
+        display: none;
+        margin: 2em auto;
 
-    &.torch {
-      background-image: url(../../dist/Images/ember-logo.svg);
-    }
-    &.focus {
-      background-image: url(../../dist/Images/ming-circular-dots-lines-logo.svg);
-    }
+        a,
+        br {
+            display: none;
+        }
 
-    &.current {
-      opacity: 1;
+        &.showControls a,
+        &.showControls br {
+            display: inherit;
+        }
     }
-  }
-
-  #control {
-    display: none;
-    margin: 2em auto;
-
-    a,
-    br {
-      display: none;
-    }
-
-    &.showControls a,
-    &.showControls br {
-      display: inherit;
-    }
-  }
 }
