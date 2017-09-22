@@ -84,13 +84,89 @@
             cellClicked: function (cell) {
                 if (cell.id !== this.currentCell.id) {
                     this.currentCell = cell;
+
+                    if (this.currentCell.type === '') {
+                        Vue.set(this.currentCell, 'type', 'room');
+
+                        this.checkColonAndRows();
+                    }
                 }
             },
             changeRow: function (direction) {
+                let rowIndex = this.getRowIndex(this.rows, this.currentCell.row),
+                    cellIndex = this.getColonIndex(this.currentCell.row.cells, this.currentCell);
 
+                rowIndex += direction;
+
+                if (typeof this.rows[rowIndex] !== 'undefined') {
+                    this.currentCell = this.rows[rowIndex]['cells'][cellIndex];
+                    if (this.currentCell.type === '') {
+                        Vue.set(this.currentCell, 'type', 'room');
+                    }
+                }
+
+                rowIndex += direction;
+
+                this.addRow(rowIndex);
             },
             changeColon: function (direction) {
+                let cellIndex = this.getColonIndex(this.currentCell.row.cells, this.currentCell);
 
+                cellIndex += direction;
+
+                if (typeof this.currentCell.row.cells[cellIndex] !== 'undefined') {
+                    this.currentCell = this.currentCell.row.cells[cellIndex];
+                    if (this.currentCell.type === '') {
+                        Vue.set(this.currentCell, 'type', 'room');
+                    }
+                }
+
+                cellIndex += direction;
+
+                this.addColon(cellIndex);
+            },
+
+            checkColonAndRows: function () {
+                let rowIndex = this.getRowIndex(this.rows, this.currentCell.row),
+                    cellIndex = this.getColonIndex(this.currentCell.row.cells, this.currentCell);
+
+                this.addRow(rowIndex + 1);
+                this.addRow(rowIndex - 1);
+                this.addColon(cellIndex + 1);
+                this.addColon(cellIndex - 1);
+            },
+
+            getRowIndex: function (rows, currentRow) {
+                let index = 0;
+
+                rows.map(function (row, i) {
+                    if (row === currentRow) {
+                        index = i;
+                    }
+                });
+
+                return index;
+            },
+            getColonIndex: function (cells, currentCell) {
+                let index = 0;
+
+                cells.map(function (cell, i) {
+                    if (cell === currentCell) {
+                        index = i;
+                    }
+                });
+
+                return index;
+            },
+            addRow: function (rowIndex) {
+                if (typeof this.rows[rowIndex] !== 'undefined') {
+                    return;
+                }
+            },
+            addColon: function (cellIndex) {
+                if (typeof this.rows[0]['cells'][cellIndex] !== 'undefined') {
+                    return;
+                }
             }
         }
     }
