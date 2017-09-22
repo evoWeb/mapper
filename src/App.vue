@@ -24,8 +24,10 @@
     import Vue from 'vue';
 
     class Cell {
-        constructor (id, row) {
-            this.id = id;
+        constructor (x, y, row) {
+            this.id = x + '_ ' + y;
+            this.x = x;
+            this.y = y;
             this.row = row;
             this.top = false;
             this.right = false;
@@ -59,9 +61,7 @@
                 for (let x = 0; x < rowCount; x++) {
                     let row = { id: x, cells: [] };
                     for (let y = 0; y < colonCount; y++) {
-                        let cell = new Cell(x + '_' + y, row);
-
-                        row.cells.push(cell);
+                        row.cells.push(new Cell(x, y, row));
                     }
                     rows.push(row);
                 }
@@ -88,7 +88,7 @@
                     if (this.currentCell.type === '') {
                         Vue.set(this.currentCell, 'type', 'room');
 
-                        this.checkColonAndRows();
+                        this.addColonsAndRows();
                     }
                 }
             },
@@ -99,7 +99,7 @@
                 rowIndex += direction;
 
                 if (typeof this.rows[rowIndex] !== 'undefined') {
-                    this.currentCell = this.rows[rowIndex]['cells'][cellIndex];
+                    this.currentCell = this.rows[rowIndex].cells[cellIndex];
                     if (this.currentCell.type === '') {
                         Vue.set(this.currentCell, 'type', 'room');
                     }
@@ -126,7 +126,7 @@
                 this.addColon(cellIndex);
             },
 
-            checkColonAndRows: function () {
+            addColonsAndRows: function () {
                 let rowIndex = this.getRowIndex(this.rows, this.currentCell.row),
                     cellIndex = this.getColonIndex(this.currentCell.row.cells, this.currentCell);
 
@@ -162,11 +162,32 @@
                 if (typeof this.rows[rowIndex] !== 'undefined') {
                     return;
                 }
+
+                let row = { id: rowIndex, cells: [] };
+                this.rows[0].cells.map(function (cell, index) {
+                    row.cells.push(new Cell(index, rowIndex, row));
+                });
+
+                if (rowIndex > 0) {
+                    this.rows.push(row);
+                } else {
+                    this.rows.unshift(row);
+                }
             },
             addColon: function (cellIndex) {
-                if (typeof this.rows[0]['cells'][cellIndex] !== 'undefined') {
+                if (typeof this.rows[0].cells[cellIndex] !== 'undefined') {
                     return;
                 }
+
+                this.rows.map(function (row, index) {
+                    let cell = new Cell(cellIndex, row.cells[0].y, row);
+
+                    if (cellIndex > 0) {
+                        row.cells.push(cell);
+                    } else {
+                        row.cells.unshift(cell);
+                    }
+                });
             }
         }
     }
