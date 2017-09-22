@@ -32,10 +32,8 @@ body {
         &.room,
         &.torch,
         &.focus {
-            background-color: #aaa;
             background-size: 1.2em;
-            background-position: center center;
-            background-repeat: no-repeat;
+            background: #aaa no-repeat center center;
         }
 
         &.red {
@@ -67,17 +65,28 @@ body {
     }
 
     #control {
-        display: none;
+        display: block;
         margin: 2em auto;
 
-        a,
-        br {
+        ul {
             display: none;
+            margin: 0;
+            padding: 0;
         }
 
-        &.showControls a,
-        &.showControls br {
-            display: inherit;
+        li {
+            float: left;
+            list-style: none;
+            margin-left: 5px;
+
+            &.clearLeft {
+                clear: left;
+                margin: 0;
+            }
+        }
+
+        &.showControls ul {
+            display: inline-block;
         }
     }
 }

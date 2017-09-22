@@ -1,27 +1,30 @@
 <template>
     <div id="control" :class="{showControls: show}">
-        <span @click="show != show">Show/hide</span>
-        <a href="#" @click="moveUp()">up (w)</a>
-        <a href="#" @click="moveLeft()">left (a)</a>
-        <a href="#" @click="moveDown()">down (s)</a>
-        <a href="#" @click="moveRight()">right (d)</a>
-        <br/>
-        <a href="#" @click="setType('')">empty (esc)</a>
-        <a href="#" @click="setType('room')">room (h)</a>
-        <a href="#" @click="setType('torch')">torch (j)</a>
-        <a href="#" @click="setType('focus')">focus (k)</a>
-        <br/>
-        <a href="#" @click="setWall('top')">top (z)</a>
-        <a href="#" @click="setWall('right')">right (u)</a>
-        <a href="#" @click="setWall('bottom')">bottom (i)</a>
-        <a href="#" @click="setWall('left')">left (o)</a>
-        <br/>
-        <a href="#" @click="setColor('')">clear (0)</a>
-        <a href="#" @click="setColor('red')">red (1)</a>
-        <a href="#" @click="setColor('green')">green (2)</a>
-        <a href="#" @click="setColor('blue')">blue (3)</a>
-        <a href="#" @click="setColor('yellow')">yellow (4)</a>
-        <a href="#" @click="setColor('purple')">purple (5)</a>
+        <div @click="this.toggleVisibility">Show/hide controls</div>
+
+        <ul>
+            <li class="clearLeft"><a href="#" @click="moveUp()">up (w)</a></li>
+            <li><a href="#" @click="moveLeft()">left (a)</a></li>
+            <li><a href="#" @click="moveDown()">down (s)</a></li>
+            <li><a href="#" @click="moveRight()">right (d)</a></li>
+
+            <li class="clearLeft"><a href="#" @click="setType('')">empty (esc)</a></li>
+            <li><a href="#" @click="setType('room')">room (h)</a></li>
+            <li><a href="#" @click="setType('torch')">torch (j)</a></li>
+            <li><a href="#" @click="setType('focus')">focus (k)</a></li>
+
+            <li class="clearLeft"><a href="#" @click="setWall('top')">top (z)</a></li>
+            <li><a href="#" @click="setWall('right')">right (u)</a></li>
+            <li><a href="#" @click="setWall('bottom')">bottom (i)</a></li>
+            <li><a href="#" @click="setWall('left')">left (o)</a></li>
+
+            <li class="clearLeft"><a href="#" @click="setColor('')">clear (0)</a></li>
+            <li><a href="#" @click="setColor('red')">red (1)</a></li>
+            <li><a href="#" @click="setColor('green')">green (2)</a></li>
+            <li><a href="#" @click="setColor('blue')">blue (3)</a></li>
+            <li><a href="#" @click="setColor('yellow')">yellow (4)</a></li>
+            <li><a href="#" @click="setColor('purple')">purple (5)</a></li>
+        </ul>
     </div>
 </template>
 
@@ -39,6 +42,10 @@
         },
 
         methods: {
+            toggleVisibility: function () {
+                this.show = !this.show;
+            },
+
             keyDown: function (event) {
                 if (event.key === 'w') {
                     this.moveUp();
