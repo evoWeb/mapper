@@ -11,13 +11,30 @@
             </tr>
         </table>
 
-        <div is="control" @invertCellValue="invertCellValue" @setCellValue="setCellValue"></div>
+        <div is="control"
+             @changeColon="changeColon"
+             @changeRow="changeRow"
+             @invertCellValue="invertCellValue"
+             @setCellValue="setCellValue"></div>
 
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
+
+    class Cell {
+        constructor (id, row) {
+            this.id = id;
+            this.row = row;
+            this.top = false;
+            this.right = false;
+            this.bottom = false;
+            this.left = false;
+            this.current = false;
+            this.type = '';
+        }
+    }
 
     export default {
         data () {
@@ -33,22 +50,27 @@
 
         methods: {
             prepareRows: function () {
-                let rows = [];
-                for (let i = 0; i < 5; i++) {
-                    let row = { id: i, cells: [] };
-                    for (let j = 0; j < 5; j++) {
-                        let cell = {id: i + '_' + j, top: false, right: false, bottom: false, left: false, current: false };
+                let rowCount = 3,
+                    colonCount = 3,
+                    rowCenter = Math.floor(rowCount / 2),
+                    colonCenter = Math.floor(colonCount / 2),
+                    rows = [];
+
+                for (let x = 0; x < rowCount; x++) {
+                    let row = { id: x, cells: [] };
+                    for (let y = 0; y < colonCount; y++) {
+                        let cell = new Cell(x + '_' + y, row);
 
                         row.cells.push(cell);
                     }
                     rows.push(row);
                 }
 
-                rows[2]['cells'][2]['type'] = 'room';
-                rows[2]['cells'][2]['current'] = true;
-
                 this.rows = rows;
-                this.currentCell = this.rows[2]['cells'][2];
+
+                this.currentCell = this.rows[rowCenter]['cells'][colonCenter];
+                this.currentCell['type'] = 'room';
+                this.currentCell['current'] = true;
             },
 
             invertCellValue(key) {
@@ -63,6 +85,12 @@
                 if (cell.id !== this.currentCell.id) {
                     this.currentCell = cell;
                 }
+            },
+            changeRow: function (direction) {
+
+            },
+            changeColon: function (direction) {
+
             }
         }
     }
